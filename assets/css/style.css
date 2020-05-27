@@ -1,0 +1,8 @@
+/* Hidden text and images */
+.is-hidden {
+    display: none;
+}
+
+form {
+    display: block;
+}
