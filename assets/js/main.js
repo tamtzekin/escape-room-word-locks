@@ -56,7 +56,6 @@ function checkAnswers(doors, guesses) {
       doors[i].open = true;
       doors[i].element.disabled = true;
       doors[i].get;
-      doors[i].element.getElementById("tick").classList.remove("is-paused");
       // document.getElementsByClassName("question").classList.remove("is-paused");
       // TODO: turn hidden on ❌ and disable hidden on ✅
     } else if (correctAnswers.includes(guess)) {
