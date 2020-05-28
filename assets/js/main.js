@@ -62,7 +62,7 @@ function checkAnswers() {
   if (answerExists(questionOne.value)) {
     if (questionOne.value == answers[0]) {
       isDoorOneOpen = true,
-      displayMessage("Correct word ✅"),
+      displayMessage("Correct word ✔️"),
       questionone.disabled = true
     } else {
       displayMessage("Right word, wrong position\n")
@@ -74,7 +74,7 @@ function checkAnswers() {
   if (answerExists(questionTwo.value)) {
     if (questionTwo.value == answers[1]) {
       isDoorTwoOpen = true,
-      displayMessage("Correct word ✅"),
+      displayMessage("Correct word ✔️"),
       questiontwo.disabled = true
     } else {
       displayMessage("Right word, wrong position\n")
@@ -86,7 +86,7 @@ function checkAnswers() {
   if (answerExists(questionThree.value)) {
     if (questionThree.value == answers[2]) {
       isDoorThreeOpen = true,
-      displayMessage("Correct word ✅"),
+      displayMessage("Correct word ✔️"),
       questionthree.disabled = true
     } else {
       displayMessage("Right word, wrong position\n")
@@ -98,7 +98,7 @@ function checkAnswers() {
   if (answerExists(questionFour.value)) {
     if (questionFour.value == answers[3]) {
       isDoorFourOpen = true,
-      displayMessage("Correct word ✅"),
+      displayMessage("Correct word ✔️"),
       questionfour.disabled = true
     } else {
       displayMessage("Right word, wrong position\n")
