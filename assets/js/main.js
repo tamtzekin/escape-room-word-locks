@@ -68,7 +68,7 @@ form.addEventListener("submit", (e) => {
 
   function checkForString(guess) {
     if (answers.includes(guess)) {
-return true
+      return true
     }
   }
 
@@ -82,75 +82,72 @@ return true
   //     }
   // }
 
-  function checkLocks() {
-    if (checkForString(questionOne.value) === true) {
-if (questionOne.value == answers[0]) {
-  isDoorOneOpen = true,
-    displayMessage("Door 1 password: Correct"),
-    questionone.disabled = true
-} else {
-  displayMessage("Right word, wrong position\n")
-}
+function checkLocks() {
+  if (checkForString(questionOne.value) === true) {
+    if (questionOne.value == answers[0]) {
+      isDoorOneOpen = true,
+      displayMessage("Correct word ✅"),
+      questionone.disabled = true
     } else {
-displayMessage("Completely wrong\n")
+      displayMessage("Right word, wrong position\n")
     }
-
-    if (checkForString(questionTwo.value) === true) {
-if (questionTwo.value == answers[1]) {
-  isDoorTwoOpen = true,
-    displayMessage("Door 2 password: Corrrect"),
-    questiontwo.disabled = true
-} else {
-  displayMessage("Right word, wrong position\n")
-}
-    } else {
-displayMessage("Completely wrong\n")
-    }
-
-    if (checkForString(questionThree.value) === true) {
-if (questionThree.value == answers[2]) {
-  isDoorThreeOpen = true,
-    displayMessage("Door 3 password: Correct"),
-    questionthree.disabled = true
-} else {
-  displayMessage("Right word, wrong position\n")
-}
-    } else {
-displayMessage("Completely wrong\n")
-    }
-
-    if (checkForString(questionFour.value) === true) {
-if (questionFour.value == answers[3]) {
-  isDoorFourOpen = true,
-    displayMessage("Door 4 password: Correct"),
-    questionfour.disabled = true
-} else {
-  displayMessage("Right word, wrong position\n")
-}
-    } else {
-displayMessage("Completely wrong\n")
-    }
-
-    // Message handling
-    if (messages.length > 0) {
-e.preventDefault(),
-  errorElement.innerText = messages.join("")
-    } else {
-displayMessage("All wrong\n")
-    }
-
+  } else {
+    displayMessage("Incorrect word ❌ \n")
   }
+  
+  if (checkForString(questionTwo.value) === true) {
+    if (questionTwo.value == answers[1]) {
+      isDoorTwoOpen = true,
+      displayMessage("Correct word ✅"),
+      questiontwo.disabled = true
+    } else {
+      displayMessage("Right word, wrong position\n")
+    }
+  } else {
+    displayMessage("Incorrect word ❌ \n")
+  }
+  
+  if (checkForString(questionThree.value) === true) {
+    if (questionThree.value == answers[2]) {
+      isDoorThreeOpen = true,
+      displayMessage("Correct word ✅"),
+      questionthree.disabled = true
+    } else {
+      displayMessage("Right word, wrong position\n")
+    }
+  } else {
+    displayMessage("Incorrect word ❌ \n")
+  }
+  
+  if (checkForString(questionFour.value) === true) {
+    if (questionFour.value == answers[3]) {
+      isDoorFourOpen = true,
+      displayMessage("Correct word ✅"),
+      questionfour.disabled = true
+    } else {
+      displayMessage("Right word, wrong position\n")
+    }
+  } else {
+    displayMessage("Incorrect word ❌ \n")
+  }
+
+// Message handling
+  if (messages.length > 0) {
+    e.preventDefault(),
+    errorElement.innerText = messages.join("")
+  } else {
+    displayMessage("That's not it. \n Did you remember to put them in order? \n Try again.")
+  }
+}
 
   function escapeCheck() {
     if (isDoorOneOpen == true && isDoorTwoOpen == true && isDoorThreeOpen == true && isDoorFourOpen == true) {
-alert("YOU ESCAPEDYOUESCAPED"),
-  displayMessage("YOU ESCAPEDYOU ESCAPEDYOU ESCAPEDYOU ESCAPEDYOU ESCAPEDYOU ESCAPED")
+      alert("YOU ESCAPEDYOUESCAPED"),
+      displayMessage("Escape message Escape message Escape message Escape message Escape message Escape message")
     }
   }
 
   // function winMessage() {
   //     wintext.classList.add("js-fade fade-in")
   // }
-
-  alert("DEBUG: " + `${isDoorOneOpen}, ${isDoorTwoOpen}, ${isDoorThreeOpen}, ${isDoorFourOpen}`);
 })
