@@ -14,10 +14,6 @@ let isDoorTwoOpen = false;
 let isDoorThreeOpen = false;
 let isDoorFourOpen = false;
 
-/*TODO:*/
-// how do you want to catch incorrect answers?
-// catch different cases upper/lower (convert all to lowercase first?)
-
 class Door {
   constructor(answer, open, errorMessage) {
     this.answer = answer;
@@ -43,47 +39,27 @@ let doorTwo = new Door("bravery", false, "Error message");
 let doorThree = new Door("brotherhood", false, "Error message");
 let doorFour = new Door("truth", false, "Error message");
 
-// answers
+// Handle answer input
 form.addEventListener("submit", (e) => {
   let messages = [];
   const answers = ["love", "bravery", "brotherhood", "truth"];
 
-  checkLocks();
-  escapeCheck();
-  checkForString();
+  checkAnswers();
+  winCondition();
 
-  function displayMessage(doornumber) {
-    messages.push(`${doornumber}` + "\n")
-    //   messages.push("\n" + `${doornumber}` + " password: Correct")
+// Display error message
+  function displayMessage(messagetext) {
+    messages.push("\n" + `${messagetext}` + "\n")
   }
 
-  // First thing, can we have all text appear either on the right hand side, next to the password input or immediately underneath.
-  // Do you think it's possible if someone puts the right answer in the wrong field, they get this message: "Oh so close! This is the right word in the wrong spot."
-  // if they answer entirely incorrectly, can we serve this message: "That’s not it. You can have one more try."
-  // When you get all four correct. I like using the dialog box for effect ("True, True, True, True" -> "You hear a click, something's happened..."). After that, i'd like a whole paragraph and potentially also an image to appear underneath or alongside the password input. Is that possible?
-
-  // 1. Check if string is in the array
-  // 2. Check if array is equal to the right position
-  // 3. Mark the answer
-
-  function checkForString(guess) {
-    if (answers.includes(guess)) {
+  function answerExists(answer) {
+    if (answers.includes(answer)) {
       return true
     }
   }
 
-  // function checkLocks() {
-  //     const guessinput = 
-  //     const answerindex = 
-  //     whichDoor = true
-
-  //     if (guessinput.value == answers(answerindex)) {
-  //   doornumber =
-  //     }
-  // }
-
-function checkLocks() {
-  if (checkForString(questionOne.value) === true) {
+function checkAnswers() {
+  if (answerExists(questionOne.value)) {
     if (questionOne.value == answers[0]) {
       isDoorOneOpen = true,
       displayMessage("Correct word ✅"),
@@ -95,7 +71,7 @@ function checkLocks() {
     displayMessage("Incorrect word ❌ \n")
   }
   
-  if (checkForString(questionTwo.value) === true) {
+  if (answerExists(questionTwo.value)) {
     if (questionTwo.value == answers[1]) {
       isDoorTwoOpen = true,
       displayMessage("Correct word ✅"),
@@ -107,7 +83,7 @@ function checkLocks() {
     displayMessage("Incorrect word ❌ \n")
   }
   
-  if (checkForString(questionThree.value) === true) {
+  if (answerExists(questionThree.value)) {
     if (questionThree.value == answers[2]) {
       isDoorThreeOpen = true,
       displayMessage("Correct word ✅"),
@@ -119,7 +95,7 @@ function checkLocks() {
     displayMessage("Incorrect word ❌ \n")
   }
   
-  if (checkForString(questionFour.value) === true) {
+  if (answerExists(questionFour.value)) {
     if (questionFour.value == answers[3]) {
       isDoorFourOpen = true,
       displayMessage("Correct word ✅"),
@@ -140,14 +116,9 @@ function checkLocks() {
   }
 }
 
-  function escapeCheck() {
+  function winCondition() {
     if (isDoorOneOpen == true && isDoorTwoOpen == true && isDoorThreeOpen == true && isDoorFourOpen == true) {
-      alert("YOU ESCAPEDYOUESCAPED"),
-      displayMessage("Escape message Escape message Escape message Escape message Escape message Escape message")
+      winText.classList.remove("is-paused")
     }
   }
-
-  // function winMessage() {
-  //     wintext.classList.add("js-fade fade-in")
-  // }
 })
