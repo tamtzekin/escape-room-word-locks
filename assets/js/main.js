@@ -19,6 +19,9 @@ class Door {
 // build door data
 const formIds = ['questionone', 'questiontwo', 'questionthree', 'questionfour'];
 const correctAnswers = ["love", "bravery", "brotherhood", "truth"];
+const correctMark = document.getElementById("tick")
+const incorrectMark = document.getElementById("cross")
+
 if (formIds.length != correctAnswers.length) {
   throw new Error('# of answers doesnt match # of forms')
 }
@@ -52,6 +55,11 @@ function checkAnswers(doors, guesses) {
     if (guess === correctAnswer) {
       doors[i].open = true;
       doors[i].element.disabled = true;
+      doors[i].get;
+      console.log(document.get)
+
+      doors[i].element.getElementById("tick").classList.remove("is-paused");
+      // document.getElementsByClassName("question").classList.remove("is-paused");
       // TODO: turn hidden on ❌ and disable hidden on ✅
     } else if (correctAnswers.includes(guess)) {
       atLeastOneInWrongPosition = true;
