@@ -5,10 +5,11 @@ const statusElement = document.getElementById("status");
 const winText = document.getElementById("wintext");
  
 class Door {
-  element;
-  constructor(answer, element) {
+  inputElement;
+  constructor(answer, inputElement, markerElement) {
     this.answer = answer;
-    this.element = element;
+    this.inputElement = inputElement;
+    this.markerElement = markerElement;
     this.open = false;
   }
   getName() {
@@ -16,11 +17,10 @@ class Door {
   }
 }
  
-// build door data
+// Build door data
 const formIds = ['questionone', 'questiontwo', 'questionthree', 'questionfour'];
 const correctAnswers = ["love", "bravery", "brotherhood", "truth"];
-const correctMark = document.getElementById("tick")
-const incorrectMark = document.getElementById("cross")
+const markerIds = ['questiononemarker', 'questiontwomarker', 'questionthreemarker', 'questionfourmarker'];
 
 if (formIds.length != correctAnswers.length) {
   throw new Error('# of answers doesnt match # of forms')
@@ -28,7 +28,7 @@ if (formIds.length != correctAnswers.length) {
 const doors = [];
  
 for (let i = 0; i < correctAnswers.length; i++) {
-  doors.push(new Door(correctAnswers[i], document.getElementById(formIds[i])));
+  doors.push(new Door(correctAnswers[i], document.getElementById(formIds[i]), document.getElementById(markerIds[i])));
 }
  
 // now each door knows its answer, its form element, and its state of open/closed
@@ -38,7 +38,7 @@ form.addEventListener("submit", (e) => {
   // guesses changes each submit, it doesn't need to exist as a global var
   const guesses = [];
   for (const door of doors) {
-    guesses.push(door.element.value);
+    guesses.push(door.inputElement.value);
   }
   checkAnswers(doors, guesses);
   winCondition(doors);
@@ -54,16 +54,25 @@ function checkAnswers(doors, guesses) {
     const correctAnswer = doors[i].answer;
     if (guess === correctAnswer) {
       doors[i].open = true;
-      doors[i].element.disabled = true;
+      doors[i].inputElement.disabled = true;
+      doors[i].markerElement.classList.remove("is-paused");
+      doors[i].markerElement.classList.remove("is-locked");
+      doors[i].markerElement.classList.add("is-open");
       doors[i].get;
-      // document.getElementsByClassName("question").classList.remove("is-paused");
-      // TODO: turn hidden on ❌ and disable hidden on ✅
+      console.log(doors[i].markerElement);
+
     } else if (correctAnswers.includes(guess)) {
       atLeastOneInWrongPosition = true;
+
+    } else if (guess !== correctAnswer) {
+      doors[i].markerElement.classList.remove("is-paused");
+      doors[i].markerElement.classList.add("is-locked");
+      console.log(doors[i].markerElement);
     }
+
   }
   // TODO: remove debug statement
-  console.log(JSON.stringify(doors));
+  // console.log(JSON.stringify(doors));
   const correctCount = doors.filter(door => door.open === true).length;
   if (correctCount === 0) {
     messages.push('Try again.')
@@ -81,7 +90,6 @@ function winCondition(doors) {
     return door.open === false
   }).length === 0;
   if (allDoorsUnlocked) {
-    alert('you win')
     winText.classList.remove("is-paused")
   }
 }

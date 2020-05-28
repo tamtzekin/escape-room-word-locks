@@ -1,5 +1,9 @@
-.question::after {
-  content: "✅";
+.is-open::after {
+  content: "✔️";
+}
+
+.is-locked::after {
+  content: "❌";
 }
 
 form {

@@ -2,9 +2,9 @@
 <html lang="en">
  
 <head>
-    <title>❌❌ Small quiz ❌❌</title>
-    <script defer src="assets/js/main.js"></script>
-    <link href="assets/css/style.css" rel="stylesheet">
+  <title>❌ Small quiz ❌</title>
+  <script defer src="assets/js/main.js"></script>
+  <link href="assets/css/style.css" rel="stylesheet">
 </head>
  
 <body>
@@ -12,29 +12,32 @@
     <div>
       <label for="room1">Room 1</label>
       <input id="questionone" name="questionone" type="text">
-      <span class="question fade-in is-paused" id="tickmark"><!--Tick will render here--></span>
-      <span class="question fade-in is-paused" id="crossmark"><!--Cross will render here--></span>
+      <span class="fade-in is-paused" id="questiononemarker"></span>
     </div>
    
     <div>
       <label for="room3">Room 2</label>
       <input id="questiontwo" name="questiontwo" type="text">
+      <span class="fade-in is-paused" id="questiontwomarker"></span>
     </div>
    
     <div>
       <label for="room3">Room 3</label>
       <input id="questionthree" name="questionthree" type="text">
+      <span class="fade-in is-paused is-locked" id="questionthreemarker"></span>
     </div>
    
     <div>
       <label for="room4">Room 4</label>
       <input id="questionfour" name="questionfour" type="text">
+      <span class="fade-in is-paused" id="questionfourmarker"></span>
     </div>
    
     <button type="submit">Submit</button>
   </form>
- 
-  <div id="status" class=""><!--Status messages here--></div>
+  
+<!--TODO: make the status messages fade in too-->
+  <div id="status" class="fade-in"><!--Status messages here--></div>
   <div id="wintext" class="fade-in is-paused">Well done, you won. Here's your prize:
     <img src="https://www.sydneyoperahouse.com/content/dam/soh/digital/articles/food/indigenous-iso-cooking-recipes/isochef-oysters-1600x1067.image.800.600.high.jpg" alt="">
   </div>
