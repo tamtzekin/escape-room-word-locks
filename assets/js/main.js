@@ -1,124 +1,82 @@
 // Answer boxes
 const form = document.getElementById("form");
-const errorElement = document.getElementById("error");
-
-const questionOne = document.getElementById("questionone");
-const questionTwo = document.getElementById("questiontwo");
-const questionThree = document.getElementById("questionthree");
-const questionFour = document.getElementById("questionfour");
-
+const statusElement = document.getElementById("status");
+ 
 const winText = document.getElementById("wintext");
-
-let isDoorOneOpen = false;
-let isDoorTwoOpen = false;
-let isDoorThreeOpen = false;
-let isDoorFourOpen = false;
-
+ 
 class Door {
-  constructor(answer, open, errorMessage) {
+  element;
+  constructor(answer, element) {
     this.answer = answer;
+    this.element = element;
     this.open = false;
-    this.errorMessage = ""
   }
-
   getName() {
-    return this.answer + " " + this.open + " " + this.errorMessage;
+    return this.answer + " " + this.open + " ";
   }
 }
-
-// create an array of new instances of the class Door 
-// let doors = [
-//   new Door("love", false, "Error message"),
-//   new Door("bravery", false, "Error message"),
-//   new Door("brotherhood", false, "Error message"),
-//   new Door("truth")
-// ];
-
-let doorOne = new Door("love", false, "Error message");
-let doorTwo = new Door("bravery", false, "Error message");
-let doorThree = new Door("brotherhood", false, "Error message");
-let doorFour = new Door("truth", false, "Error message");
-
+ 
+// build door data
+const formIds = ['questionone', 'questiontwo', 'questionthree', 'questionfour'];
+const correctAnswers = ["love", "bravery", "brotherhood", "truth"];
+if (formIds.length != correctAnswers.length) {
+  throw new Error('# of answers doesnt match # of forms')
+}
+const doors = [];
+ 
+for (let i = 0; i < correctAnswers.length; i++) {
+  doors.push(new Door(correctAnswers[i], document.getElementById(formIds[i])));
+}
+ 
+// now each door knows its answer, its form element, and its state of open/closed
+ 
 // Handle answer input
 form.addEventListener("submit", (e) => {
-  let messages = [];
-  const answers = ["love", "bravery", "brotherhood", "truth"];
-
-  checkAnswers();
-  winCondition();
-
-// Display error message
-  function displayMessage(messagetext) {
-    messages.push("\n" + `${messagetext}` + "\n")
+  // guesses changes each submit, it doesn't need to exist as a global var
+  const guesses = [];
+  for (const door of doors) {
+    guesses.push(door.element.value);
   }
-
-  function answerExists(answer) {
-    if (answers.includes(answer)) {
-      return true
+  checkAnswers(doors, guesses);
+  winCondition(doors);
+  e.preventDefault();
+});
+ 
+// functions should have input/output and not exist inside main thread flow generally
+function checkAnswers(doors, guesses) {
+  const messages = [];
+  let atLeastOneInWrongPosition = false;
+  for (let i = 0; i < doors.length; i++) {
+    const guess = guesses[i];
+    const correctAnswer = doors[i].answer;
+    if (guess === correctAnswer) {
+      doors[i].open = true;
+      doors[i].element.disabled = true;
+      // TODO: turn hidden on ❌ and disable hidden on ✅
+    } else if (correctAnswers.includes(guess)) {
+      atLeastOneInWrongPosition = true;
     }
   }
-
-function checkAnswers() {
-  if (answerExists(questionOne.value)) {
-    if (questionOne.value == answers[0]) {
-      isDoorOneOpen = true,
-      displayMessage("Correct word ✔️"),
-      questionone.disabled = true
-    } else {
-      displayMessage("Right word, wrong position\n")
-    }
-  } else {
-    displayMessage("Incorrect word ❌ \n")
+  // TODO: remove debug statement
+  console.log(JSON.stringify(doors));
+  const correctCount = doors.filter(door => door.open === true).length;
+  if (correctCount === 0) {
+    messages.push('Try again.')
+  } else if (correctCount > 0 && correctCount < 4) {
+    messages.push("You're almost there!")
   }
-  
-  if (answerExists(questionTwo.value)) {
-    if (questionTwo.value == answers[1]) {
-      isDoorTwoOpen = true,
-      displayMessage("Correct word ✔️"),
-      questiontwo.disabled = true
-    } else {
-      displayMessage("Right word, wrong position\n")
-    }
-  } else {
-    displayMessage("Incorrect word ❌ \n")
+  if (atLeastOneInWrongPosition) {
+    messages.push('At least one word is correct but in the wrong position')
   }
-  
-  if (answerExists(questionThree.value)) {
-    if (questionThree.value == answers[2]) {
-      isDoorThreeOpen = true,
-      displayMessage("Correct word ✔️"),
-      questionthree.disabled = true
-    } else {
-      displayMessage("Right word, wrong position\n")
-    }
-  } else {
-    displayMessage("Incorrect word ❌ \n")
-  }
-  
-  if (answerExists(questionFour.value)) {
-    if (questionFour.value == answers[3]) {
-      isDoorFourOpen = true,
-      displayMessage("Correct word ✔️"),
-      questionfour.disabled = true
-    } else {
-      displayMessage("Right word, wrong position\n")
-    }
-  } else {
-    displayMessage("Incorrect word ❌ \n")
-  }
-
-// Message handling
-  if (messages.length > 0) {
-    e.preventDefault(),
-    errorElement.innerText = messages.join("")
-  } else {
-    displayMessage("That's not it. \n Did you remember to put them in order? \n Try again.")
+  statusElement.innerText = messages.join("\n")
+}
+ 
+function winCondition(doors) {
+  const allDoorsUnlocked = doors.filter(door => {
+    return door.open === false
+  }).length === 0;
+  if (allDoorsUnlocked) {
+    alert('you win')
+    winText.classList.remove("is-paused")
   }
 }
-
-  function winCondition() {
-    if (isDoorOneOpen == true && isDoorTwoOpen == true && isDoorThreeOpen == true && isDoorFourOpen == true) {
-      winText.classList.remove("is-paused")
-    }
-  }
-})
