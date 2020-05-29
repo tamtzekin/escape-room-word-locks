@@ -75,12 +75,16 @@ function checkAnswers(doors, guesses) {
   // console.log(JSON.stringify(doors));
   const correctCount = doors.filter(door => door.open === true).length;
   if (correctCount === 0) {
-    messages.push('Try again.')
+    messages.push("That's not it.\n Did you remember to put them in order?\n Try again.")
+  } else if (correctCount > 0 && correctCount < 2) {
+    messages.push("You're almost there.")
+  } else if (correctCount > 0 && correctCount < 3) {
+    messages.push("Keep going.")
   } else if (correctCount > 0 && correctCount < 4) {
-    messages.push("You're almost there!")
+    messages.push("Just one more to go.")
   }
   if (atLeastOneInWrongPosition) {
-    messages.push('At least one word is correct but in the wrong position')
+    messages.push('Have you tried that word in a different spot?')
   }
   statusElement.innerText = messages.join("\n")
 }

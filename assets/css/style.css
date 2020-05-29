@@ -1,13 +1,10 @@
+/* Door lock markers*/
 .is-open::after {
   content: "✔️";
 }
 
 .is-locked::after {
   content: "❌";
-}
-
-form {
-    display: block;
 }
 
 /* Fade in fade out styling */
