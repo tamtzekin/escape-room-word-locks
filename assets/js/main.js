@@ -102,7 +102,7 @@ function winCondition(doors) {
     "<p>CLIMB.</p>" +
     "<p>You climb up the steps. Perched at the very top is a wooden box with a note attached.</p>" +
     "<p>Remember that password, for it is the key to wisdom in much more than just opera. That, and this, is your reward. Do with it what makes you happiest, but do be careful handling it – it was crafted in 1791, for a very special premiere.</p>" +
-    "<p>You open the box. Inside sits an ornate carved wooden flute.</p>"
-    "<img src=\"https://www.sydneyoperahouse.com/content/dam/soh/digital/articles/escape-room/EscapeHouse-Room-Sails2-H.jpg\" alt=\"Illustration of Sydney Opera House with coloured sails\">"
+    "<p>You open the box. Inside sits an ornate carved wooden flute.</p>" +
+    "<img src=\"https://www.sydneyoperahouse.com/content/dam/soh/digital/articles/escape-room/EscapeHouse-Room-Sails2-H.jpg\" alt=\"Illustration of Sydney Opera House against starry night sky with sails coloured green, red, yellow and white\" width=\"400px\">"
   }
 }
