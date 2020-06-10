@@ -1,4 +1,3 @@
-// Answer boxes
 const form = document.getElementById("form");
 const statusElement = document.getElementById("status");
  
@@ -19,7 +18,7 @@ class Door {
  
 // Build door data
 const formIds = ['questionone', 'questiontwo', 'questionthree', 'questionfour'];
-const correctAnswers = ["love", "bravery", "brotherhood", "truth"];
+const correctAnswers = ['love', 'bravery', 'brotherhood', 'truth'];
 const markerIds = ['questiononemarker', 'questiontwomarker', 'questionthreemarker', 'questionfourmarker'];
 
 if (formIds.length != correctAnswers.length) {
