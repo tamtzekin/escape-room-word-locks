@@ -32,14 +32,14 @@ for (let i = 0; i < correctAnswers.length; i++) {
   
 // Handle answer input
 form.addEventListener('submit', (e) => {
-    // guesses changes each submit, it doesn't need to exist as a global var
     const guesses = [];
+    e.preventDefault();
+    // guesses changes each submit, it doesn't need to exist as a global var
     for (const door of doors) {
         guesses.push(door.inputElement.value);
     }
     checkAnswers(doors, guesses);
     winCondition(doors);
-    e.preventDefault();
 });
  
 // functions should have input/output and not exist inside main thread flow generally
