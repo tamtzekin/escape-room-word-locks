@@ -1,53 +1,53 @@
 /* Lock text displays */
 .container {
-  margin: 0 auto;
-  max-width: 25em;
-  min-height: 50vh;
-  padding: 3vw 1.4vw;
-  width: 100%
+    margin: 0 auto;
+    max-width: 25em;
+    min-height: 50vh;
+    padding: 3vw 1.4vw;
+    width: 100%
 }
 
 .question-field {
-  padding: 0.8em;
+    padding: 0.8em;
 }
 
 .status-messages {
-  padding: 2vw;
+    padding: 2vw;
 }
 
 .button {
-  margin: 1vw;
+    margin: 1vw;
 }
 
 /* Door lock markers*/
 .is-open::after {
-  content: "✔️";
+    content: "✔️";
 }
 
 .is-locked::after {
-  content: "❌";
+    content: "❌";
 }
 
 /* Fade in fade out styling */
 @-webkit-keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
+    to {
+        opacity: 1;
+    }
 }
 
 .fade-in {
-	-webkit-animation: fadeIn .5s ease-in 1 forwards;
-  animation: fadeIn .5s ease-in 1 forwards;
-  opacity: 0;
+    -webkit-animation: fadeIn .5s ease-in 1 forwards;
+    animation: fadeIn .5s ease-in 1 forwards;
+    opacity: 0;
 }
 
 .is-paused {
-	-webkit-animation-play-state: paused;
-  animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
 }
