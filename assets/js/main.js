@@ -13,7 +13,7 @@ class Door {
   getName() {
       return this.answer + ' ' + this.open + ' ';
     }
-}
+};
  
 // Build door data
 const formIds = ['questionone', 'questiontwo', 'questionthree', 'questionfour'];
@@ -22,12 +22,13 @@ const markerIds = ['questiononemarker', 'questiontwomarker', 'questionthreemarke
 
 if (formIds.length != correctAnswers.length) {
     throw new Error('# of answers doesnt match # of forms')
-}
+};
+
 const doors = [];
  
 for (let i = 0; i < correctAnswers.length; i++) {
     doors.push(new Door(correctAnswers[i], document.getElementById(formIds[i]), document.getElementById(markerIds[i])));
-}
+};
   
 // Handle answer input
 form.addEventListener('submit', (e) => {
@@ -64,25 +65,27 @@ function checkAnswers(doors, guesses) {
             doors[i].markerElement.classList.add('is-locked');
             console.log(doors[i].markerElement);
         }
+    };
+
+    // TODO: remove debug statement
+    // console.log(JSON.stringify(doors));
+    const correctCount = doors.filter(door => door.open === true).length;
+
+    if (correctCount === 0) {
+        messages.push("That's not it. Did you remember to put them in order? Try again.")
+    } else if (correctCount > 0 && correctCount < 2) {
+        messages.push("You're almost there.")
+    } else if (correctCount > 0 && correctCount < 3) {
+        messages.push("Keep going.")
+    } else if (correctCount > 0 && correctCount < 4) {
+        messages.push("Just one more to go.")
     }
 
-// TODO: remove debug statement
-// console.log(JSON.stringify(doors));
-const correctCount = doors.filter(door => door.open === true).length;
-if (correctCount === 0) {
-    messages.push("That's not it. Did you remember to put them in order? Try again.")
-} else if (correctCount > 0 && correctCount < 2) {
-    messages.push("You're almost there.")
-} else if (correctCount > 0 && correctCount < 3) {
-    messages.push("Keep going.")
-} else if (correctCount > 0 && correctCount < 4) {
-    messages.push("Just one more to go.")
-}
-if (atLeastOneInWrongPosition) {
-    messages.push("Have you tried that word in a different spot?")
-}
-statusElement.innerText = messages.join('\n')
-}
+    if (atLeastOneInWrongPosition) {
+        messages.push("Have you tried that word in a different spot?")
+    }
+    statusElement.innerText = messages.join('\n')
+};
  
 function winCondition(doors) {
     const allDoorsUnlocked = doors.filter(door => {
@@ -100,4 +103,4 @@ function winCondition(doors) {
         '<p>You open the box. Inside sits an ornate carved wooden flute.</p>' +
         '<img src=\'https://www.sydneyoperahouse.com/content/dam/soh/digital/articles/escape-room/EscapeHouse-Room-Sails2-H.jpg\' alt=\'Illustration of Sydney Opera House against starry night sky with sails coloured green, red, yellow and white\' width=\'400px\'>'
     }
-}
+};
