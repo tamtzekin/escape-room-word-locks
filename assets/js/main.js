@@ -3,7 +3,6 @@ const statusElement = document.getElementById('status');
 const winText = document.getElementById('wintext');
  
 class Door {
-    // inputElement;
     constructor(answer, inputElement, markerElement) {
         this.answer = answer;
         this.inputElement = inputElement;
