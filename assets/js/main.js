@@ -3,7 +3,7 @@ const statusElement = document.getElementById('status');
 const winText = document.getElementById('wintext');
  
 class Door {
-    inputElement;
+    // inputElement;
     constructor(answer, inputElement, markerElement) {
         this.answer = answer;
         this.inputElement = inputElement;
@@ -14,7 +14,7 @@ class Door {
       return this.answer + ' ' + this.open + ' ';
     }
 };
- 
+
 // Build door data
 const formIds = ['questionone', 'questiontwo', 'questionthree', 'questionfour'];
 const correctAnswers = ["LOVE", "BRAVERY", "BROTHERHOOD", "TRUTH"];
