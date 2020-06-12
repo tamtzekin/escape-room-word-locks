@@ -1,6 +1,5 @@
 const form = document.getElementById('form');
 const statusElement = document.getElementById('status');
- 
 const winText = document.getElementById('wintext');
  
 class Door {
@@ -18,7 +17,7 @@ class Door {
  
 // Build door data
 const formIds = ['questionone', 'questiontwo', 'questionthree', 'questionfour'];
-const correctAnswers = ['LOVE', 'BRAVERY', 'BROTHERHOOD', 'TRUTH'];
+const correctAnswers = ["LOVE", "BRAVERY", "BROTHERHOOD", "TRUTH"];
 const markerIds = ['questiononemarker', 'questiontwomarker', 'questionthreemarker', 'questionfourmarker'];
 
 if (formIds.length != correctAnswers.length) {
@@ -66,20 +65,21 @@ function checkAnswers(doors, guesses) {
             console.log(doors[i].markerElement);
         }
     }
+
 // TODO: remove debug statement
 // console.log(JSON.stringify(doors));
 const correctCount = doors.filter(door => door.open === true).length;
 if (correctCount === 0) {
-    messages.push('That\'s not it.\n Did you remember to put them in order?\n Try again.')
+    messages.push("That's not it. Did you remember to put them in order? Try again.")
 } else if (correctCount > 0 && correctCount < 2) {
-    messages.push('You\'re almost there.')
+    messages.push("You're almost there.")
 } else if (correctCount > 0 && correctCount < 3) {
-    messages.push('Keep going.')
+    messages.push("Keep going.")
 } else if (correctCount > 0 && correctCount < 4) {
-    messages.push('Just one more to go.')
+    messages.push("Just one more to go.")
 }
 if (atLeastOneInWrongPosition) {
-    messages.push('Have you tried that word in a different spot?')
+    messages.push("Have you tried that word in a different spot?")
 }
 statusElement.innerText = messages.join('\n')
 }
