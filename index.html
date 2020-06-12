@@ -2,44 +2,44 @@
 <html lang="en">
  
 <head>
-  <title>❌ Escape room locks ❌</title>
-  <script defer src="assets/js/main.js"></script>
-  <link href="assets/css/style.css" rel="stylesheet">
+    <title>❌ Escape room locks ❌</title>
+    <script defer src="assets/js/main.js"></script>
+    <link href="assets/css/style.css" rel="stylesheet">
 </head>
- 
-<body>
-  <div class="container">
 
-  passwords: love / bravery / brotherhood / truth
-  <form id="form" action="/" method="GET" autocomplete="off">
-    <div class="question-field">
-      <label for="room1">Room 1</label>
-      <input id="questionone" name="questionone" type="text" onkeyup="this.value = this.value.toUpperCase();">
-      <span class="fade-in is-paused" id="questiononemarker"></span>
-    </div>
+<body>
+    <div class="container">
+        passwords: love / bravery / brotherhood / truth
+        <form id="form" action="/" method="GET" autocomplete="off">
+            
+            <div class="question-field">
+                <label for="room1">Room 1</label>
+                <input id="questionone" name="questionone" type="text" onkeyup="this.value = this.value.toUpperCase();">
+                <span class="fade-in is-hidden" id="questiononemarker"></span>
+            </div>
     
-    <div class="question-field">
-      <label for="room3">Room 2</label>
-      <input id="questiontwo" name="questiontwo" type="text" onkeyup="this.value = this.value.toUpperCase();">
-      <span class="fade-in is-paused" id="questiontwomarker"></span>
-    </div>
+            <div class="question-field">
+                <label for="room3">Room 2</label>
+                <input id="questiontwo" name="questiontwo" type="text" onkeyup="this.value = this.value.toUpperCase();">
+                <span class="fade-in is-hidden" id="questiontwomarker"></span>
+            </div>
     
-    <div class="question-field">
-      <label for="room3">Room 3</label>
-      <input id="questionthree" name="questionthree" type="text" onkeyup="this.value = this.value.toUpperCase();">
-      <span class="fade-in is-paused is-locked" id="questionthreemarker"></span>
-    </div>
-    
-    <div class="question-field">
-      <label for="room4">Room 4</label>
-      <input id="questionfour" name="questionfour" type="text" onkeyup="this.value = this.value.toUpperCase();">
-      <span class="fade-in is-paused" id="questionfourmarker"></span>
-    </div>
-    
-    <button class="button" type="submit">Unlock</button>
-  </form>
+            <div class="question-field">
+                <label for="room3">Room 3</label>
+                <input id="questionthree" name="questionthree" type="text" onkeyup="this.value = this.value.toUpperCase();">
+                <span class="fade-in is-hidden is-locked" id="questionthreemarker"></span>
+            </div>
+        
+            <div class="question-field">
+                <label for="room4">Room 4</label>
+                <input id="questionfour" name="questionfour" type="text" onkeyup="this.value = this.value.toUpperCase();">
+                <span class="fade-in is-hidden" id="questionfourmarker"></span>
+            </div>
+        
+            <button class="button" type="submit">Unlock</button>
+        </form>
   
-  <div id="status" class="fade-in status-messages" ><!--Status messages--></div>
-  <div id="wintext" class="fade-in win-text"><!--Win text--></div>
-  </div>
+    <div id="status" class="fade-in status-messages" ><!--Status messages--></div>
+    <div id="wintext" class="fade-in win-text"><!--Win text--></div>
+    </div>
 </body>

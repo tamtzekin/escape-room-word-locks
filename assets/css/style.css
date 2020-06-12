@@ -28,26 +28,6 @@
     content: "❌";
 }
 
-/* Fade in fade out styling */
-@-webkit-keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
-}
-
-.fade-in {
-    -webkit-animation: fadeIn .5s ease-in 1 forwards;
-    animation: fadeIn .5s ease-in 1 forwards;
-    opacity: 0;
-}
-
-.is-paused {
-    -webkit-animation-play-state: paused;
-    animation-play-state: paused;
+.is-hidden {
+    display: none;
 }

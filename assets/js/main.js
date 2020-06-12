@@ -53,7 +53,7 @@ function checkAnswers(doors, guesses) {
         if (guess === correctAnswer) {
             doors[i].open = true;
             doors[i].inputElement.disabled = true;
-            doors[i].markerElement.classList.remove('is-paused');
+            doors[i].markerElement.classList.remove('is-hidden');
             doors[i].markerElement.classList.remove('is-locked');
             doors[i].markerElement.classList.add('is-open');
             doors[i].get;
@@ -61,13 +61,13 @@ function checkAnswers(doors, guesses) {
         } else if (correctAnswers.includes(guess)) {
             atLeastOneInWrongPosition = true;
         } else if (guess !== correctAnswer) {
-            doors[i].markerElement.classList.remove('is-paused');
+            doors[i].markerElement.classList.remove('is-hidden');
             doors[i].markerElement.classList.add('is-locked');
             console.log(doors[i].markerElement);
         }
     }
-  // TODO: remove debug statement
-  // console.log(JSON.stringify(doors));
+// TODO: remove debug statement
+// console.log(JSON.stringify(doors));
 const correctCount = doors.filter(door => door.open === true).length;
 if (correctCount === 0) {
     messages.push('That\'s not it.\n Did you remember to put them in order?\n Try again.')
