@@ -40,7 +40,7 @@ form.addEventListener('submit', (e) => {
     checkAnswers(doors, guesses);
     winCondition(doors);
 });
- 
+
 // functions should have input/output and not exist inside main thread flow generally
 function checkAnswers(doors, guesses) {
     const messages = [];
@@ -53,16 +53,15 @@ function checkAnswers(doors, guesses) {
             doors[i].open = true;
             doors[i].inputElement.disabled = true;
             doors[i].markerElement.classList.remove('is-hidden');
+            console.log(doors[i]);
             doors[i].markerElement.classList.remove('is-locked');
             doors[i].markerElement.classList.add('is-open');
             doors[i].get;
-            console.log(doors[i].markerElement);
         } else if (correctAnswers.includes(guess)) {
             atLeastOneInWrongPosition = true;
         } else if (guess !== correctAnswer) {
             doors[i].markerElement.classList.remove('is-hidden');
             doors[i].markerElement.classList.add('is-locked');
-            console.log(doors[i].markerElement);
         }
     };
 
