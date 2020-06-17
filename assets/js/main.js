@@ -82,7 +82,6 @@ function checkAnswers(doors, guesses) {
     }
 
     if (atLeastOneInWrongPosition) {
-        statusElement.classList.add('is-visible');    
         messages.push("Have you tried that word in a different spot?")
     }
     statusElement.classList.add('is-visible');
