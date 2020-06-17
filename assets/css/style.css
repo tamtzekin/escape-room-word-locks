@@ -16,7 +16,11 @@
 }
 
 .button {
-    margin: 1vw;
+	background: #eceae6;
+	color: #000000;
+	border-radius: 7px;
+	box-shadow: 0 5px #a8a8a8;
+    padding: 5px 10px 8px 20px;    
 }
 
 /* Door lock markers*/
@@ -28,6 +32,15 @@
     content: "❌";
 }
 
+/* Fade effects*/
 .is-hidden {
-    display: none;
+    opacity: 0;
+    -webkit-transition: 600ms all ease;
+    transition: 600ms all ease;
+}
+
+.is-visible {
+    opacity: 1;
+    -webkit-transition: 600ms all ease;
+    transition: 600ms all ease;
 }

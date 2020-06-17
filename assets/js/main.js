@@ -1,3 +1,4 @@
+/* Escape room password doors*/
 const form = document.getElementById('form');
 const statusElement = document.getElementById('status');
 const winText = document.getElementById('wintext');
@@ -53,7 +54,7 @@ function checkAnswers(doors, guesses) {
             doors[i].open = true;
             doors[i].inputElement.disabled = true;
             doors[i].markerElement.classList.remove('is-hidden');
-            console.log(doors[i]);
+            doors[i].markerElement.classList.add('is-visible');
             doors[i].markerElement.classList.remove('is-locked');
             doors[i].markerElement.classList.add('is-open');
             doors[i].get;
@@ -61,6 +62,7 @@ function checkAnswers(doors, guesses) {
             atLeastOneInWrongPosition = true;
         } else if (guess !== correctAnswer) {
             doors[i].markerElement.classList.remove('is-hidden');
+            doors[i].markerElement.classList.add('is-visible');
             doors[i].markerElement.classList.add('is-locked');
         }
     };
@@ -80,8 +82,10 @@ function checkAnswers(doors, guesses) {
     }
 
     if (atLeastOneInWrongPosition) {
+        statusElement.classList.add('is-visible');    
         messages.push("Have you tried that word in a different spot?")
     }
+    statusElement.classList.add('is-visible');
     statusElement.innerText = messages.join('\n')
 };
  
@@ -90,6 +94,7 @@ function winCondition(doors) {
         return door.open === false
     }).length === 0;
     if (allDoorsUnlocked) {
+        winText.classList.add('is-visible');
         winText.innerHTML = '<p>You speak the four words into the receiver. The voice at the other end is silent, and for one dreadful moment you think you’ve gotten it wrong... then you hear a click. It comes from the glass door, the one that locked you in here at the start of all this. Is it open? Are you free? But what about the rewards the letter promised?</p>' +
         '<p>The soft voice on the phone speaks at last. </p>' +
         '<p>“Go outside and turn around.”</p>' +
