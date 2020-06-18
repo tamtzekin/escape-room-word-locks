@@ -1,4 +1,4 @@
-/* Escape room password doors*/
+/* Escape room password doors */
 const form = document.getElementById('form');
 const statusElement = document.getElementById('status');
 const winText = document.getElementById('wintext');
@@ -34,7 +34,6 @@ for (let i = 0; i < correctAnswers.length; i++) {
 form.addEventListener('submit', (e) => {
     const guesses = [];
     e.preventDefault();
-    // guesses changes each submit, it doesn't need to exist as a global var
     for (const door of doors) {
         guesses.push(door.inputElement.value);
     }
@@ -42,7 +41,6 @@ form.addEventListener('submit', (e) => {
     winCondition(doors);
 });
 
-// functions should have input/output and not exist inside main thread flow generally
 function checkAnswers(doors, guesses) {
     const messages = [];
     let atLeastOneInWrongPosition = false;
@@ -53,24 +51,27 @@ function checkAnswers(doors, guesses) {
         if (guess === correctAnswer) {
             doors[i].open = true;
             doors[i].inputElement.disabled = true;
-            doors[i].markerElement.classList.remove('is-hidden');
+            doors[i].markerElement.classList = '';
+            // doors[i].markerElement.classList.remove('is-hidden');
             doors[i].markerElement.classList.add('is-visible');
-            doors[i].markerElement.classList.remove('is-locked');
+            // doors[i].markerElement.classList.remove('is-locked');
             doors[i].markerElement.classList.add('is-open');
             doors[i].get;
         } else if (correctAnswers.includes(guess)) {
             atLeastOneInWrongPosition = true;
-            doors[i].markerElement.classList.add('is-close');
+            doors[i].markerElement.classList = '';
+            // doors[i].markerElement.classList.remove('is-hidden');
             doors[i].markerElement.classList.add('is-visible');
+            doors[i].markerElement.classList.add('is-close');
         } else if (guess !== correctAnswer) {
-            doors[i].markerElement.classList.remove('is-hidden');
+            doors[i].markerElement.classList = '';
+            // doors[i].markerElement.classList.remove('is-hidden');
             doors[i].markerElement.classList.add('is-visible');
             doors[i].markerElement.classList.add('is-locked');
         }
     };
 
-    // TODO: remove debug statement
-    // console.log(JSON.stringify(doors));
+    // Check answers
     const correctCount = doors.filter(door => door.open === true).length;
 
     if (correctCount === 0) {
