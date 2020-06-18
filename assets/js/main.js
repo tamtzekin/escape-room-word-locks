@@ -60,6 +60,8 @@ function checkAnswers(doors, guesses) {
             doors[i].get;
         } else if (correctAnswers.includes(guess)) {
             atLeastOneInWrongPosition = true;
+            doors[i].markerElement.classList.add('is-close');
+            doors[i].markerElement.classList.add('is-visible');
         } else if (guess !== correctAnswer) {
             doors[i].markerElement.classList.remove('is-hidden');
             doors[i].markerElement.classList.add('is-visible');
@@ -72,7 +74,7 @@ function checkAnswers(doors, guesses) {
     const correctCount = doors.filter(door => door.open === true).length;
 
     if (correctCount === 0) {
-        messages.push("That's not it. Did you remember to put them in order? Try again.")
+        messages.push("That's not it. Try again.")
     } else if (correctCount > 0 && correctCount < 2) {
         messages.push("You're almost there.")
     } else if (correctCount > 0 && correctCount < 3) {
@@ -82,17 +84,19 @@ function checkAnswers(doors, guesses) {
     }
 
     if (atLeastOneInWrongPosition) {
-        messages.push("Have you tried that word in a different spot?")
+        messages.push("Are you sure you've got the right order?")
     }
+    statusElement.classList.remove('is-hidden');
     statusElement.classList.add('is-visible');
     statusElement.innerText = messages.join('\n')
 };
- 
+
 function winCondition(doors) {
     const allDoorsUnlocked = doors.filter(door => {
         return door.open === false
     }).length === 0;
     if (allDoorsUnlocked) {
+        winText.classList.remove('is-hidden');
         winText.classList.add('is-visible');
         winText.innerHTML = '<p>You speak the four words into the receiver. The voice at the other end is silent, and for one dreadful moment you think you’ve gotten it wrong... then you hear a click. It comes from the glass door, the one that locked you in here at the start of all this. Is it open? Are you free? But what about the rewards the letter promised?</p>' +
         '<p>The soft voice on the phone speaks at last. </p>' +

@@ -32,6 +32,10 @@
     content: "❌";
 }
 
+.is-close::after {
+    content: "❔";
+}
+
 /* Fade effects*/
 .is-hidden {
     opacity: 0;
